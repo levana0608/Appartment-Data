@@ -1,0 +1,39 @@
+* {
+  margin: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.title {
+  margin-left: 40px;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 18rem;
+  border: none;
+}
+
+.card-body {
+  border: ridge 1px gray;
+  text-align: center;
+  margin-top: 30px;
+  margin-left: 30px;
+  width: 420px;
+  border-radius: 10px;
+  height: 500px;
+}
+
+.errorm {
+  height: 70px;
+}
+
+.newApart {
+  height: 60px;
+  margin-left: 50px;
+}
+
+.image {
+  height: 270px;
+}

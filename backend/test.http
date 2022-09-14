@@ -1,0 +1,64 @@
+@local = http://localhost:3000
+
+GET {{local}}/api/apartments
+###
+//create user
+POST {{local}}/api/add-user
+Content-Type: application/json
+
+{
+   "name": "fd",
+   "email": "fgjmbn@gmail.com",
+   "password": "fclkjuk,"
+}
+
+###
+//login user
+POST {{local}}/api/connect
+Content-Type: application/json
+
+{
+   "email": "levana@gmail.com",
+   "password": "37654"
+}
+###
+
+POST {{local}}/api/image
+Content-Type: application/json
+
+{
+   "fileName":"modern-apartment-architecture.jpg"
+}
+
+###
+//add image
+POST {{local}}/api/image
+Content-Type: application/json
+
+{
+   "fileName": "modern-apartment-architecture.jpg",
+}
+
+###
+//add apartment
+POST {{local}}/api/apartment
+Content-Type: application/json
+
+{
+"price": 5264,
+"imagePath":"tgjbxxxxxxxxxxxxxxxxxxxxxx",
+"phone": "0586537900",
+"city": "bet shemesh",
+"street": "elisha",
+"userid": 3,
+"status": true
+}
+###
+GET {{local}}/api/image
+
+###
+GET {{local}}/api/apartment-sale
+
+###
+GET {{local}}/api/all-apartments
+###

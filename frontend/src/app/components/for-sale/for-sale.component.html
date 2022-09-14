@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="col-10 mx-auto">
+    <div class="text-center mb-4 title">
+      <app-page-header
+        icon="fas fa-building"
+        title="Apartments For Sale"
+        description="All apartments for sale"
+      ></app-page-header>
+    </div>
+
+    <div class="card" *ngIf="apartments; else noApartment">
+      <!-- <img class="card-img-top" [src]="imageSrc | safeHtml" alt="Card image cap" /> -->
+      <!-- <img class="card-img-top" [src]="imageSrc" > -->
+      <!-- <img class="card-img-top" src="/api/for-sale" > -->
+
+      <div
+        class="card-body"
+        *ngFor="let apart of apartments; index as id"
+        id="{{ id }}"
+      >
+        <div *ngIf="apart.img_src; else noImage">
+          <img
+            class="card-img-top image"
+            src="http://localhost:3000/images/{{ apart.img_src }}"
+            alt="apartment image"
+          />
+        </div>
+
+        <h5 class="card-title">City: {{ apart.city }}</h5>
+        <p class="card-text">Street: {{ apart.street }}</p>
+        <a href="tel:{{ apart.phone }}"
+          ><i class="fas fa-phone-volume"></i> {{ apart.phone }}</a
+        >
+        <p>
+          <i
+            >Price: <b>{{ apart.price }} </b></i
+          ><i class="fas fa-shekel-sign"></i>
+        </p>
+        <button
+          class="btn btn-outline-danger mt-3"
+          (click)="deletApartment(apart)"
+          *ngIf="localStorage && userID == apart.userid"
+        >
+          DELETE
+        </button>
+
+        <a
+          class="btn btn-outline-secondary ml-3 mt-3"
+          routerLink="/edit-apartment"
+          *ngIf="localStorage && userID == apart.userid"
+          (click)="editApartment(apart)"
+        >
+          Edit
+        </a>
+        <!-- (click)="editApartment(apart)" -->
+      </div>
+    </div>
+
+    <div
+      class="alert alert-danger errorm container"
+      role="alert"
+      *ngIf="errorMessage"
+    >
+      {{ errorMessage }}
+    </div>
+    <!-- *ngIf="{{userId}}={{apart.userid}}" -->
+    <ng-template #noApartment>
+      <p><i>no apartments...</i></p>
+    </ng-template>
+
+    <!-- <a >new</a> -->
+    <div class="container mt-3" *ngIf="localStorage">
+      <a class="btn btn-dark btn-lg btn-block newApart" href="/new-apartment"
+        ><i class="fas fa-plus"></i> Add Apartment</a
+      >
+    </div>
+    <ng-template #noImage>
+      <img
+        class="card-img-top image"
+        src="https://as2.ftcdn.net/jpg/02/84/64/51/500_F_284645131_hE2W3bbPxFBkk2aNqNyiTgLiraaiAuDh.jpg"
+        alt="no image"
+      />
+    </ng-template>
+    <!-- src="http://localhost:3000/images/1622103406517_pexels-pixabay-65894.jpg" -->
+    <!-- <button (click)="image()">click</button> -->
+    <!-- [src]="imageSrc |safeHtml" 
+src="http://localhost:3000/api/for-sale"-->
+  </div>
+</div>

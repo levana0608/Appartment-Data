@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col-10 mx-auto">
+    <div class="text-center mb-4">
+      <app-page-header
+        icon="fas fa-sign-in-alt"
+        title="Sign Un"
+        description="Sign up with your account"
+      ></app-page-header>
+    </div>
+
+    <form
+      #loginForm="ngForm"
+      (ngSubmit)="onSubmit()"
+      novalidate
+      autocomplete="off"
+    >
+      <div class="form-group mb-4">
+        <label for="fname">Your full name</label>
+        <input
+          #n="ngModel"
+          [(ngModel)]="form.name"
+          name="name"
+          required
+          fname
+          [ngClass]="{ 'is-invalid': n.errors && n.touched }"
+          type="text"
+          placeholder="Full Name"
+          id="fname"
+          class="form-control"
+          autocomplete="name"
+        />
+        <div class="invalid-feedback">Name is required</div>
+      </div>
+
+      <div class="form-group mb-4">
+        <label for="email">Email address</label>
+        <input
+          #ef="ngModel"
+          [(ngModel)]="form.email"
+          name="email"
+          required
+          email
+          [ngClass]="{ 'is-invalid': ef.errors && ef.touched }"
+          type="email"
+          placeholder="john@doe.com"
+          id="email"
+          class="form-control"
+          autocomplete="username"
+        />
+        <div class="invalid-feedback">Valid email is required</div>
+      </div>
+
+      <div class="form-group mb-4">
+        <label for="password">Password</label>
+        <input
+          #pf="ngModel"
+          [(ngModel)]="form.password"
+          name="password"
+          required
+          [ngClass]="{ 'is-invalid': pf.errors && pf.touched }"
+          type="password"
+          id="password"
+          class="form-control"
+          autocomplete="current-password"
+        />
+        <div class="invalid-feedback">password is required</div>
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
+      </div>
+      <button
+        [disabled]="loginForm.form.invalid"
+        class="btn btn-lg btn-secondary"
+      >
+        Sign in
+      </button>
+
+      <button appLoginGoogle class="btn btn-lg btn-secondary">
+        Log in With Google
+      </button>
+    </form>
+  </div>
+</div>
+
+
+
+<lib-toastify-toast-container
+  [position]="'top-right'"
+  [autoClose]="0"
+  [newestOnTop]="true"
+></lib-toastify-toast-container>
